@@ -1,5 +1,13 @@
 # Kaong Detection Application - Optimized Version
 
+# A-CNN-SYSTEM-FOR-KAONG-ATTRIBUTE-ASSESSMENT
+This system uses a CNN model to assess attributes of Kaong.
+
+## Installation
+1. Clone the repo
+2. Run `pip install -r requirements.txt`
+3. Run `python main.py`
+
 ## Overview
 This is an optimized Flask application for detecting the ripeness of Kaong fruit using YOLO (You Only Look Once) computer vision models. The application has been refactored from a monolithic structure to a service-oriented architecture for better maintainability, performance, and scalability.
 
