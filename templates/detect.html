@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kripen</title>
+    <link rel="stylesheet" href="/static/detect.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+</head>
+<body>
+    <div class="hero">
+        <nav>
+            <img class="kripenlogo" src="/static/image/Logo main vertical.png" alt="logo" width="170" height="40">
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/detect">DETECT</a></li>
+                <li><a href="/data">DATA</a></li>
+                <li><a href="/about">ABOUT</a></li>
+            </ul>
+        </nav>
+
+        <p class="paragraph">Start by scanning directly or uploading one from your device to proceed.</p>
+
+        <!-- Show Details Button -->
+        <div class="show-details-container">
+            <button id="showDetailsBtn" onclick="showStoredDetails()" class="show-details-btn">
+                📊 View Last Analysis Details
+            </button>
+        </div>
+
+        <div class="row anim">
+            <!-- Upload Image Section -->
+            <div class="column1">
+                <p><a href="#" onclick="uploadImage()"> 
+                    <img src="/static/image/Upload icon.png" class="uploadpng" alt="Upload" height="180px" width="180px">
+                </a></p>
+                <h2>Upload Image</h2>
+                <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+                <!-- Upload Preview Container -->
+                <div id="uploadPreviewContainer" style="display: none;">
+                    <button id="closeUpload" onclick="closeUpload()">X</button>
+                    <div class="scan-box">
+                        <canvas id="uploadCanvas"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scan Section -->
+            <div class="column2" id="scanContainer">
+                <p><a href="#" onclick="openCamera()"> 
+                    <img src="/static/image/Scan icon.png" class="scanpng" alt="Scan" height="180px" width="180px">
+                </a></p>
+                <h2>Scan</h2>
+                
+                <!-- Camera Container -->
+                <div id="cameraContainer">
+                    <button id="closeCamera" onclick="closeCamera()">X</button>
+                    <div class="scan-box">
+                        <video id="video" autoplay playsinline></video>
+                        <canvas id="canvas"></canvas>
+                    </div>
+                    <div class="camera-controls">
+                        <button id="captureButton" onclick="captureImage()" class="capture-btn">
+                            Capture & Analyze
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Details Panel -->
+        <div id="detailsPanel" class="details-panel" style="display: none;">
+            <div class="details-content">
+                <button id="closeDetails" onclick="closeDetails()" class="close-details-btn">×</button>
+                <h2>Analysis Details</h2>
+                <div id="detailsContent">
+                    <!-- Content will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

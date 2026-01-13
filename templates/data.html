@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kripen - Data History</title>
+    <link rel="stylesheet" href="/static/data.css">
+</head>
+<body>
+    <div class="hero">
+        <nav>
+            <img class="kripenlogo" src="/static/image/Logo main vertical.png" alt="logo" width="170" height="40">
+            <ul>
+                <li><a href="/">HOME</a></li>
+                <li><a href="/detect">DETECT</a></li>
+                <li><a href="/data" class="active">DATA</a></li>
+                <li><a href="/about">ABOUT</a></li>
+            </ul>
+        </nav>
+
+        <div class="content">
+            <h1>Assessment History</h1>
+            
+            <!-- Summary Panel -->
+            <div class="summary-panel">
+                <div class="summary-card">
+                    <h3>Total Fruits Analyzed</h3>
+                    <p id="totalFruits">0</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Ripe</h3>
+                    <p id="summaryRipe">0</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Rotten</h3>
+                    <p id="summaryRotten">0</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Unripe</h3>
+                    <p id="summaryUnripe">0</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Avg Confidence</h3>
+                    <p id="avgConfidence">0%</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Last Upload</h3>
+                    <p id="lastUpload">Never</p>
+                </div>
+            </div>
+            
+            <div class="filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ready">Ripe</button>
+                <button class="filter-btn" data-filter="not-ready">Unripe</button>
+                <button class="filter-btn" data-filter="rotten">Rotten</button>
+                <button class="filter-btn" data-filter="mixed">Mixed</button>
+                <div class="filter-status">
+                    <span id="activeFilter">Currently showing: All</span>
+                </div>
+            </div>
+
+            <!-- Detection Controls -->
+            <div class="detection-controls" id="detectionControls" style="display: none;">
+            <div class="confidence-control">
+                <label for="confidenceSlider">Confidence Threshold: <span id="confidenceValue">70</span>%</label>
+                <input type="range" id="confidenceSlider" min="0" max="100" value="70" class="confidence-slider">
+                <div id="confidenceInfo" class="confidence-info">Showing all assessments</div>
+            </div>
+            <!-- Legend removed - no longer needed to avoid presentation debate -->
+            </div>
+
+            <!-- Category Summary -->
+            <div class="category-summary" id="categorySummary" style="display: none;">
+                <div class="summary-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Total Fruits:</span>
+                        <span class="stat-value" id="categoryTotal">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Average Confidence:</span>
+                        <span class="stat-value" id="categoryConfidence">0%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Confidence Range:</span>
+                        <span class="stat-value" id="categoryRange">0-0%</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Images:</span>
+                        <span class="stat-value" id="categoryImages">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sorting Controls -->
+            <div class="sorting-controls">
+                <label for="sortSelect">Sort by:</label>
+                <select id="sortSelect" class="sort-select">
+                    <option value="date">Upload Date</option>
+                    <option value="confidence">Confidence</option>
+                    <option value="count">Fruit Count</option>
+                </select>
+                <button id="sortOrder" class="sort-order-btn" data-order="desc">↓</button>
+            </div>
+
+            <div class="action-buttons">
+                <button id="exportReport" class="export-btn">Export Report</button>
+                <button id="refreshData" class="refresh-btn">Refresh Data</button>
+            </div>
+
+            <div class="data-grid">
+                <!-- Data items will be dynamically added here -->
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Template for data items -->
+    <template id="data-item-template">
+        <div class="data-item" data-assessment-id="">
+                <div class="image-container">
+                    <img src="" alt="Kaong Image">
+                    <div class="assessment-label"></div>
+                    <div class="confidence-badge"></div>
+                </div>
+            <div class="fruit-summary">
+                <span class="summary-text"></span>
+            </div>
+            <div class="card-actions">
+                <button class="expand-btn" title="View detailed breakdown">Details</button>
+                <button class="delete-btn" title="Delete this assessment">Delete</button>
+            </div>
+        </div>
+    </template>
+
+    <!-- Modal for expanded details -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Detailed Analysis</h2>
+            <div id="modalContent">
+                <!-- Content will be populated by JavaScript -->
+            </div>
+            <div class="modal-actions">
+                <button id="deleteModalBtn" class="delete-btn">Delete Assessment</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/data.js"></script>
+</body>
+</html> 
